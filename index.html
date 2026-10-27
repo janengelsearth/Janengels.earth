@@ -167,6 +167,27 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
 .layer small { display: block; color: var(--muted); font-size: .92rem; padding-left: 22px; }
 .contact { background: var(--panel); border: 1px solid var(--rule); border-radius: 6px; padding: 20px 22px; }
 .contact p { margin: 0 0 6px; }
+#contact { scroll-margin-top: 120px; }
+.cform { display: grid; gap: 14px; margin-top: 16px; }
+.cform .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cform label { display: grid; gap: 5px; font-family: var(--display); font-size: .82rem; font-weight: 500; color: var(--muted); }
+.cform input, .cform select, .cform textarea { font: inherit; font-family: var(--body); font-size: 1rem; color: var(--ink); background: var(--ground); border: 1px solid var(--rule); border-radius: 5px; padding: 9px 11px; width: 100%; }
+.cform textarea { min-height: 130px; resize: vertical; }
+.cform input:focus, .cform select:focus, .cform textarea:focus { outline: 2px solid var(--or-line); outline-offset: 1px; border-color: transparent; }
+.cform .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.cform button { justify-self: start; font-family: var(--display); font-weight: 600; font-size: .95rem; background: var(--or); color: #241c05; border: 0; border-radius: 5px; padding: 11px 20px; cursor: pointer; }
+.cform button:hover { background: var(--or-line); }
+.cform .fine { font-size: .85rem; color: var(--muted); margin: 0; }
+.cform .fine a { color: var(--ink); }
+.prose { max-width: 38em; display: grid; gap: 14px; }
+.prose h3 { margin: 18px 0 0; }
+.prose p, .prose ul { margin: 0; }
+.prose ul { padding-left: 1.2em; display: grid; gap: 6px; }
+.foot { border-top: 1px solid var(--rule); color: var(--muted); font-size: .85rem; }
+.foot .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.foot a { color: var(--muted); }
+.foot a:hover { color: var(--ink); }
+@media (max-width: 700px) { .cform .row { grid-template-columns: minmax(0, 1fr); } }
 
 /* variant A: banier */
 :root[data-variant="A"] .has-part .hero { background: var(--part); color: var(--part-ink); border-bottom: 5px solid var(--part-2); }
@@ -294,6 +315,7 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
       </nav>
     </div></header>
     <div id="pages"></div>
+    <footer class="foot"><div class="wrap"><span>Jan Engels · Borne</span><a href="#contact">Contact</a><a href="#privacy">Privacy</a></div></footer>
   </div>
 </main>
 
@@ -310,7 +332,7 @@ const PARTS = [
     blog: "Blogs over de energietransitie verschijnen hier, met de nieuwste bovenaan." },
   { key: "rijkdom", name: "Geestelijke rijkdom", field: "Goud", layer: "Samenleving", sw: "var(--or)",
     lede: "Cultuur, literatuur en muziek maken: ik speel trombone in twee harmonieorkesten en een bigband. En het gesprek: elkaar echt ontmoeten, ook in de politiek.",
-    plan: [["Muziek", "De orkesten, de bigband, en foto's van optredens."], ["Lezen en cultuur", "Wat ik lees en wat me raakt."], ["Ontmoeting", "Waarom het gesprek ertoe doet, ook in de politiek."], ["Kom in gesprek", "Op afspraak: koffie en een goed gesprek."]] },
+    plan: [["Muziek", "De orkesten, de bigband, en foto's van optredens."], ["Lezen en cultuur", "Wat ik lees en wat me raakt."], ["Ontmoeting", "Waarom het gesprek ertoe doet, ook in de politiek."], ["Kom in gesprek", "Op afspraak: via het formulier op de pagina achter mijn naam."]] },
   { key: "economie", art: "oak", name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
     lede: "De aarde is de basis. De samenleving werkt binnen de grenzen van de aarde, de economie binnen die van de samenleving. In de eik zie je die lagen terug: wortels in de aarde, een stevige stam, en vruchten.",
     plan: [["Mijn kijk: de wedding cake", "Het model achter deze site, kort uitgelegd."], ["Economie binnen grenzen", "Welvaart die verder kijkt dan geld."], ["Wat dit vraagt van bestuur", "Hoe je keuzes maakt met dit model in je achterhoofd."]] },
@@ -356,7 +378,28 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
     <div class="wrap content">
       <div class="duo">
         <div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div>
-        <div class="contact narrow"><h3>Kom in gesprek</h3><p>Ik maak graag een afspraak voor een goed gesprek.</p><p style="color:var(--muted)">E-mailadres en LinkedIn volgen.</p></div>
+        <div class="contact narrow" id="contact">
+          <h3>Kom in gesprek</h3>
+          <p>Ik maak graag een afspraak voor een goed gesprek. Laat hieronder weten waarover, en wanneer het je uitkomt.</p>
+          <form class="cform" action="https://www.formpost.eu/f/29dc551c" method="POST">
+            <div class="row">
+              <label for="f-naam">Naam<input id="f-naam" type="text" name="naam" autocomplete="name" required></label>
+              <label for="f-email">E-mailadres<input id="f-email" type="email" name="email" autocomplete="email" required></label>
+            </div>
+            <div class="row">
+              <label for="f-onderwerp">Onderwerp
+                <select id="f-onderwerp" name="onderwerp">
+                  <option>Water &amp; bodem</option><option>Duurzaamheid</option><option>Muziek en cultuur</option><option>Brede welvaart</option><option>Iets anders</option>
+                </select>
+              </label>
+              <label for="f-moment">Voorkeur voor dag of tijd<input id="f-moment" type="text" name="moment" placeholder="Bijvoorbeeld: dinsdagmiddag"></label>
+            </div>
+            <label for="f-bericht">Bericht<textarea id="f-bericht" name="message" required></textarea></label>
+            <div class="hp" aria-hidden="true"><label for="f-gotcha">Laat dit veld leeg<input id="f-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+            <button type="submit">Verstuur</button>
+            <p class="fine">Je gegevens gebruik ik alleen om op je bericht te reageren. Lees de <a href="#privacy">privacyverklaring</a>.</p>
+          </form>
+        </div>
       </div>
       <section>
         <h3>De site in één oogopslag</h3>
@@ -367,6 +410,42 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
         </div>
       </section>
     </div>
+  </article>
+  <article id="view-bedankt" hidden>
+    <div class="hero"><div class="wrap"><div class="copy">
+      <p class="eyebrow">Bericht ontvangen</p>
+      <h2>Dank je wel</h2>
+      <p class="lede">Je bericht is verstuurd. Ik neem zo snel mogelijk contact met je op.</p>
+    </div></div></div>
+    <div class="wrap content"><p><a href="#home">← Terug naar het schild</a></p></div>
+  </article>
+  <article id="view-privacy" hidden>
+    <div class="hero"><div class="wrap"><div class="copy">
+      <p class="eyebrow">Privacyverklaring</p>
+      <h2>Wat ik met je gegevens doe</h2>
+      <p class="lede">Kort gezegd: zo weinig mogelijk. Deze site gebruikt geen cookies en houdt niet bij wat je bekijkt.</p>
+      <span class="concept">Concepttekst</span>
+    </div></div></div>
+    <div class="wrap content"><div class="prose">
+      <h3>Wie ben ik</h3>
+      <p>Deze site is van Jan Engels, Borne. Ik ben verantwoordelijk voor de gegevens die je via deze site met mij deelt.</p>
+      <h3>Welke gegevens</h3>
+      <p>Alleen wat je zelf invult in het contactformulier: je naam, je e-mailadres, het onderwerp, je voorkeur voor een moment en je bericht.</p>
+      <h3>Waarvoor</h3>
+      <p>Om op je bericht te reageren en, als je dat wilt, een afspraak te maken. Ik gebruik je gegevens niet voor iets anders en geef ze niet door aan anderen.</p>
+      <h3>Wie helpen mij daarbij</h3>
+      <ul>
+        <li>FormPost (Duitsland) verwerkt het formulier en stuurt je bericht naar mij door.</li>
+        <li>mailbox.org (Duitsland) beheert mijn e-mail.</li>
+        <li>statichost.eu (Zweden) host deze website.</li>
+      </ul>
+      <p>Alle drie bewaren gegevens binnen de Europese Unie.</p>
+      <p>De lettertypes van deze site worden nu nog geladen via Google Fonts. Daarbij ziet Google je IP-adres. Binnenkort zet ik de lettertypes op de site zelf, zodat dat niet meer gebeurt.</p>
+      <h3>Hoe lang</h3>
+      <p>Niet langer dan nodig om je vraag af te handelen.</p>
+      <h3>Jouw rechten</h3>
+      <p>Je kunt me vragen welke gegevens ik van je heb, en vragen die te laten verwijderen. Gebruik daarvoor het <a href="#contact">contactformulier</a>. Ben je het niet eens met hoe ik met je gegevens omga, dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
+    </div></div>
   </article>`;
 
 // ---------- open design choice ----------
@@ -428,7 +507,9 @@ regions.forEach(r => {
 // ---------- routing ----------
 function route() {
   const h = location.hash.slice(1);
-  const page = (byKey[h] || h === "jan") ? h : "home";
+  const EXTRA = { jan: "Over Jan Engels", bedankt: "Dank je wel", privacy: "Privacy" };
+  const wantsForm = h === "contact";
+  const page = byKey[h] || EXTRA[h] ? h : wantsForm ? "jan" : "home";
   const inner = page !== "home";
   document.getElementById("view-home").hidden = page !== "home";
   const innerEl = document.getElementById("view-inner");
@@ -441,9 +522,10 @@ function route() {
   document.querySelectorAll("nav.sections a").forEach(a => a.dataset.key === page ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
   const cur = document.querySelector('nav.sections a[aria-current="page"]');
   if (cur) cur.scrollIntoView({ block: "nearest", inline: "center" });
-  document.title = page === "home" ? "Jan Engels" : page === "jan" ? "Over Jan Engels" : byKey[page].name + " · Jan Engels";
+  document.title = page === "home" ? "Jan Engels" : page === "jan" ? EXTRA.jan : (byKey[page] ? byKey[page].name : EXTRA[page]) + " · Jan Engels";
   show(null);
-  window.scrollTo(0, 0);
+  if (wantsForm) document.getElementById("contact").scrollIntoView({ block: "start" });
+  else window.scrollTo(0, 0);
 }
 window.addEventListener("hashchange", route);
 route();
