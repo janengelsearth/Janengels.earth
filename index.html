@@ -381,7 +381,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
         <div class="contact narrow" id="contact">
           <h3>Kom in gesprek</h3>
           <p>Ik maak graag een afspraak voor een goed gesprek. Laat hieronder weten waarover, en wanneer het je uitkomt.</p>
-          <form class="cform" action="https://www.formpost.eu/f/29dc551c" method="POST">
+          <form class="cform" id="cform" action="https://www.formpost.eu/f/29dc551c" method="POST" target="fp-frame">
             <div class="row">
               <label for="f-naam">Naam<input id="f-naam" type="text" name="naam" autocomplete="name" required></label>
               <label for="f-email">E-mailadres<input id="f-email" type="email" name="email" autocomplete="email" required></label>
@@ -399,6 +399,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
             <button type="submit">Verstuur</button>
             <p class="fine">Je gegevens gebruik ik alleen om op je bericht te reageren. Lees de <a href="#privacy">privacyverklaring</a>.</p>
           </form>
+          <iframe name="fp-frame" id="fp-frame" title="Verzenden" hidden></iframe>
         </div>
       </div>
       <section>
@@ -415,7 +416,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
     <div class="hero"><div class="wrap"><div class="copy">
       <p class="eyebrow">Bericht ontvangen</p>
       <h2>Dank je wel</h2>
-      <p class="lede">Je bericht is verstuurd. Ik neem zo snel mogelijk contact met je op.</p>
+      <p class="lede">Dank voor je bericht! Ik neem snel contact met je op.</p>
     </div></div></div>
     <div class="wrap content"><p><a href="#home">← Terug naar het schild</a></p></div>
   </article>
@@ -503,6 +504,26 @@ regions.forEach(r => {
     chosen = true; sess.set("je-chosen", "1");
   });
 });
+
+// ---------- contact form: send in the background, stay on the site ----------
+// The form posts into a hidden frame; once FormPost has answered, show our own thank-you page.
+(function () {
+  const form = document.getElementById("cform"), frame = document.getElementById("fp-frame");
+  let sending = false;
+  form.addEventListener("submit", () => {
+    sending = true;
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = true; btn.textContent = "Bezig met versturen…";
+  });
+  frame.addEventListener("load", () => {
+    if (!sending) return;
+    sending = false;
+    const btn = form.querySelector("button[type=submit]");
+    btn.disabled = false; btn.textContent = "Verstuur";
+    form.reset();
+    location.hash = "bedankt";
+  });
+})();
 
 // ---------- routing ----------
 function route() {
