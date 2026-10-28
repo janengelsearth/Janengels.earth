@@ -12,9 +12,13 @@
 <meta property="og:url" content="https://janengels.earth/">
 <meta property="og:locale" content="nl_NL">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="preload" href="fonts/sora.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="fonts/source-sans-3.woff" as="font" type="font/woff" crossorigin>
+<style>
+@font-face { font-family: "Sora"; src: url("fonts/sora.woff") format("woff"); font-weight: 100 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("fonts/source-sans-3.woff") format("woff"); font-weight: 200 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Source Sans 3"; src: url("fonts/source-sans-3-italic.woff") format("woff"); font-weight: 200 900; font-style: italic; font-display: swap; }
+</style>
 <style>
 /* Layout: one deliberate dark world. Type: Sora (headings) + Source Sans 3 (text). Home = embossed name over a lit, slightly convex shield on a near-black stage. Inner pages = one top bar (home mark, name, five colour-keyed sections) above a hero band in the colour of the current section. */
 :root {
@@ -508,7 +512,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
         <li>statichost.eu (Zweden) host deze website.</li>
       </ul>
       <p>Alle drie bewaren gegevens binnen de Europese Unie.</p>
-      <p>De lettertypes van deze site worden nu nog geladen via Google Fonts. Daarbij ziet Google je IP-adres. Binnenkort zet ik de lettertypes op de site zelf, zodat dat niet meer gebeurt.</p>
+      <p>Ook de lettertypes staan op de site zelf. Er gaat bij een bezoek dus niets naar Google of andere partijen.</p>
       <h3>Hoe lang</h3>
       <p>Niet langer dan nodig om je vraag af te handelen.</p>
       <h3>Jouw rechten</h3>
