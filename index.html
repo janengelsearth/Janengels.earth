@@ -180,6 +180,21 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
 .cform .fine { font-size: .85rem; color: var(--muted); margin: 0; }
 .cform .fine a { color: var(--ink); }
 .prose { max-width: 38em; display: grid; gap: 14px; }
+.content > * { min-width: 0; }
+.content .intro { margin: -4px 0 14px; color: var(--muted); }
+.content .intro a { color: var(--ink); }
+.tl { list-style: none; margin: 0 0 30px; padding: 0; display: grid; gap: 0; }
+.tl li { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 16px; padding-block: 12px; border-top: 1px solid var(--rule); }
+.tl .d { font-family: var(--display); font-size: .82rem; color: var(--muted); padding-top: 3px; font-variant-numeric: tabular-nums; }
+.tl b { font-family: var(--display); font-weight: 600; display: block; }
+.tl p { margin: 4px 0 0; color: var(--muted); font-size: .96rem; }
+.nf-wrap { overflow-x: auto; margin-bottom: 30px; }
+.nf { border-collapse: collapse; width: 100%; font-size: .95rem; }
+.nf th { text-align: left; font-family: var(--display); font-weight: 500; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); }
+.nf td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.todo { color: var(--muted); font-style: italic; border-left: 3px solid var(--or-line); padding-left: 12px; }
+.todo-inline { color: var(--or-line); }
+@media (max-width: 700px) { .tl li { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
 .prose h3 { margin: 18px 0 0; }
 .prose p, .prose ul { margin: 0; }
 .prose ul { padding-left: 1.2em; display: grid; gap: 6px; }
@@ -348,6 +363,58 @@ const LAYERS = [["Aarde", ["water", "duurzaamheid"]], ["Samenleving", ["rijkdom"
 const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 const sess = { get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} } };
 
+// ---------- Mijn reis: loopbaan en nevenfuncties (concept) ----------
+const tl = rows => `<ol class="tl">${rows.map(([d, t, s]) => `<li><span class="d">${d}</span><div><b>${t}</b>${s ? `<p>${s}</p>` : ""}</div></li>`).join("")}</ol>`;
+const REIS = `
+  <div class="duo">
+    <div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div>
+    <div class="prose">
+      <h3>Mijn verhaal</h3>
+      <p class="todo">Hier komt het verhaal van de feniks: de burn-out, en hoe die het begin werd van een nieuwe fase. Dit schrijven we samen, als volgende stap.</p>
+    </div>
+  </div>
+  <section class="narrow">
+    <h3>Loopbaan</h3>
+    <p class="intro">De hoofdlijnen. Wie meer wil weten, vindt de details op <a href="https://www.linkedin.com/in/jengels" target="_blank" rel="noopener">LinkedIn</a>.</p>
+    ${tl([
+      ["2026 – nu", "Op weg naar een nieuwe bestuurlijke rol", "Na Losser neem ik de tijd om me voor te bereiden op een nieuwe bestuurlijke rol. Het meest concreet is die bij Waterschap Vechtstromen, waar ik kandidaat ben voor Water Natuurlijk. Daarom zoek ik op dit moment geen andere functies."],
+      ["2024 – 2026", "Wethouder in Losser", "Met onder meer duurzaamheid, ruimtelijke ontwikkeling en klimaatadaptatie in portefeuille. Als voorzitter van de Twentse werkgroep inkoop gemeentelijke energie legde ik de basis voor de gezamenlijke stroominkoop bij Twence: sinds 2026 halen tien Twentse gemeenten hun stroom duurzaam uit de eigen regio."],
+      ["2019 – 2024", "Projectleider woon- en leefomgeving bij Klimaatverbond Nederland", "Samen met gemeenten werkte ik aan verduurzaming die aansluit bij de leefwereld van inwoners, en verbond die met klimaatadaptatie, biodiversiteit en ‘water en bodem sturend’. In 2019 en 2020 was ik daarnaast programmaregisseur gebouwde omgeving bij het Gelders Energieakkoord."],
+      ["2018", "Bestuurssecretaris a.i. bij het Graafschap College", ""],
+      ["2014 – 2018", "Wethouder in Bronckhorst", "Met onder meer economie, duurzaamheid en bestuurlijke vernieuwing in portefeuille. Ik was mede-initiatiefnemer van Vitale Kernen. Wat begon als het opknappen van vier winkelgebieden, wilde ik verbreden tot de vraag ‘wat voor dorp willen we zijn?’. Inwoners maakten per kern hun eigen dorpsvisie, en in Zelhem gaan ze daar nog altijd zelf mee verder."],
+      ["2010 – 2014", "Eigen adviesbureau, FinanZiel", "Bedrijfskundig en financieel advies."],
+      ["1993 – 2014", "Logistiek en finance &amp; control", "Bij bedrijven als Ericsson en CEVA, bij de gemeente Arnhem en bij maatschappelijke organisaties zoals de Eigen Kracht Centrale."],
+    ])}
+    <h3>Toezicht</h3>
+    ${tl([
+      ["2021 – 2025", "Lid raad van toezicht, Stadskamer Achterhoek", "Herstelgerichte zorg en welzijn."],
+      ["2016 – 2019", "Voorzitter raad van commissarissen, Agem", "Het groene energiebedrijf van Achterhoekse gemeenten en inwoners."],
+    ])}
+    <h3>Opleiding</h3>
+    ${tl([
+      ["2019 – 2021", "Toezichthouder Nieuwe Stijl", "De Erkende Toezichthouder"],
+      ["2007 – 2009", "Vastgoed &amp; Grondverkeer, opleiding tot rentmeester", "Hogeschool Van Hall Larenstein"],
+      ["1987 – 1990", "Bedrijfskunde", "Nijenrode, Universiteit voor Bedrijfskunde"],
+    ])}
+  </section>
+  <section class="narrow" id="nevenfuncties">
+    <h3>Nevenfuncties</h3>
+    <p class="intro">Mijn huidige functies naast mijn werk, en of ik er een vergoeding voor krijg. Bijgewerkt: oktober 2026.</p>
+    <div class="nf-wrap"><table class="nf">
+      <thead><tr><th>Functie</th><th>Organisatie</th><th>Sinds</th><th>Vergoeding</th></tr></thead>
+      <tbody>
+        <tr><td>Bestuurslid</td><td>Buren Energie, Borne</td><td>2026</td><td>Onbezoldigd</td></tr>
+        <tr><td>Bestuurslid</td><td>Energiecoöperatie Overijssel (ECO)</td><td>Per 10 november 2026</td><td>Onbezoldigd</td></tr>
+      </tbody>
+    </table></div>
+    <h3>Politiek</h3>
+    ${tl([
+      ["2026 –", "Kandidaat voor het algemeen bestuur van Waterschap Vechtstromen", "Nummer 2 op de lijst van Water Natuurlijk, voor de verkiezingen in maart 2027."],
+      ["2026 –", "Kandidaat Provinciale Staten Overijssel", "D66. Op mijn eigen verzoek sta ik op een niet-verkiesbare plaats."],
+      ["2026 –", "Commissielid gemeenteraad Borne", "Namens D66."],
+    ])}
+  </section>`;
+
 // ---------- inner pages ----------
 function planList(p) { return `<ul class="plan">${p.plan.map(([t, d]) => `<li><b>${t}</b><span>${d}</span></li>`).join("")}</ul>`; }
 document.getElementById("pages").innerHTML = PARTS.map(p => `
@@ -364,7 +431,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
       </div>
     </div></div>
     <div class="wrap content">
-      ${p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
+      ${p.key === "reis" ? REIS : p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
       ${p.blog ? `<section class="narrow"><h3>Blog</h3><div class="empty">Nog geen berichten. ${p.blog}</div></section>` : ""}
     </div>
   </article>`).join("") + `
