@@ -196,6 +196,8 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
 .nf { border-collapse: collapse; width: 100%; font-size: .95rem; }
 .nf th { text-align: left; font-family: var(--display); font-weight: 500; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); }
 .nf td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.kader { margin: 8px 0; padding: 18px 22px; border-left: 4px solid var(--or-line); background: color-mix(in srgb, var(--sinopel) 22%, var(--ground)); font-family: var(--display); font-size: 1.25rem; font-weight: 500; line-height: 1.4; color: var(--ink); border-radius: 0 6px 6px 0; }
+.prose p b { font-weight: 600; }
 .todo { color: var(--muted); font-style: italic; border-left: 3px solid var(--or-line); padding-left: 12px; }
 .todo-inline { color: var(--or-line); }
 @media (max-width: 700px) { .tl li { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
@@ -355,8 +357,8 @@ const PARTS = [
   { key: "economie", art: "oak", name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
     lede: "De aarde is de basis. De samenleving werkt binnen de grenzen van de aarde, de economie binnen die van de samenleving. In de eik zie je die lagen terug: wortels in de aarde, een stevige stam, en vruchten.",
     plan: [["Mijn kijk: de wedding cake", "Het model achter deze site, kort uitgelegd."], ["Economie binnen grenzen", "Welvaart die verder kijkt dan geld."], ["Wat dit vraagt van bestuur", "Hoe je keuzes maakt met dit model in je achterhoofd."]] },
-  { key: "reis", art: "phoenix", name: "Mijn reis", field: "De feniks", layer: "Persoonlijk", sw: "var(--gules)",
-    lede: "Na een burn-out ben ik uit mijn eigen as herrezen. Dat was geen breuk, maar het begin van een nieuwe fase. Ik wil de wereld open, nieuwsgierig en onbevreesd tegemoet treden.",
+  { key: "reis", art: "phoenix", final: true, name: "Mijn reis", field: "De feniks", layer: "Persoonlijk", sw: "var(--gules)",
+    lede: "Waarom een feniks op mijn wapenschild? Omdat ik mezelf rond 2010 opnieuw moest uitvinden. Wat ik daarvan leerde, bepaalt nog altijd hoe ik werk: open, nieuwsgierig en met oog voor mensen.",
     plan: [["Mijn verhaal", "Van burn-out naar een nieuwe fase."], ["Loopbaan", "De hoofdlijnen; details staan op LinkedIn."], ["Nevenfuncties", "Een actueel en openbaar overzicht."]],
     portrait: true },
 ];
@@ -374,7 +376,14 @@ const REIS = `
     <div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div>
     <div class="prose">
       <h3>Mijn verhaal</h3>
-      <p class="todo">Hier komt het verhaal van de feniks: de burn-out, en hoe die het begin werd van een nieuwe fase. Dit schrijven we samen, als volgende stap.</p>
+      <p><b>Lang redeneerde ik vooral zakelijk.</b> Was een keuze goed voor de organisatie, dan was iedereen het er toch mee eens? Ik maakte mijn eigen functie overbodig, in de overtuiging dat goed werk vanzelf een nieuwe plek oplevert. Dat collega’s in dezelfde rol daar niet blij mee waren, zag ik niet.</p>
+      <p><b>Rond de eeuwwisseling werd ik voor het eerst manager, bij Ericsson.</b> Al snel zat er een medewerkster in tranen aan mijn bureau: ik had te weinig oog gehad voor wat een kwestie voor haar betekende. Toen ik dat thuis vertelde, zei mijn vrouw: “Goh, nu pas?”</p>
+      <p><b>Ik werkte voor wat anderen van me verwachtten, niet voor wat ik zelf belangrijk vond.</b> Ik was perfectionistisch, en tegelijk vroeg ik me af of ik wel goed genoeg was. Daardoor kon ik moeilijk iets afmaken. Zolang het niet af was, kon niemand er iets van vinden: niet van mijn werk, en dus niet van mij. Het recept voor een burn-out. Rond 2010 was het zover.</p>
+      <blockquote class="kader">Mijn brein kan me ontzettend goed voor de gek houden. Mijn lichaam liegt niet.</blockquote>
+      <p><b>De weg omhoog vond ik niet in mijn hoofd, maar in mijn lichaam.</b> Met systemisch werk, familieopstellingen, ontdekte ik waar het gevoel “ben ik wel goed genoeg?” vandaan kwam. Daardoor kon ik het een plek geven. Coach <a href="https://www.werkenwaarde.nl" target="_blank" rel="noopener">Frans Corten</a> hielp me verder. Met zijn KernTalentenanalyse weet ik nu wat mijn kerntalenten zijn, en waar mijn energie weglekt. Volharding is er een van: ik ben een doorzetter en wil dingen afmaken. Juist dat talent liep vast in mijn perfectionisme.</p>
+      <p><b>Uit die tijd stamt ook mijn wapenschild.</b> Ik wil dingen van de grond af opzetten en werk graag in een ruim kader. Via Frans begon ik in 2010 voor mezelf, en de eik werd het logo van mijn adviesbureau. Het schild was toen nog niet af. Zijn huidige vorm kreeg het pas zo’n tien jaar later.</p>
+      <p><b>Wat de feniks me bracht: ik ben mensgerichter geworden.</b> Een besluit dat op papier klopt, is nog geen goed besluit. Daarom breng ik als bestuurder eerst in kaart wie een besluit raakt. Die mensen moeten een reële kans krijgen om zich erover uit te spreken.</p>
+      <p><b>En pakt een besluit voor een groep negatief uit, dan verdient ook die groep perspectief.</b> Dat gebeurt nu eenmaal, als je werkt in het bredere maatschappelijke belang. Voor mij is dat de kern van democratie: die is er niet voor de wil van de meerderheid, maar om het belang van de minderheid te beschermen.</p>
     </div>
   </div>
   <section class="narrow">
@@ -431,7 +440,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
         <p class="eyebrow">${p.field} · ${p.layer}</p>
         <h2>${p.name}</h2>
         <p class="lede">${p.lede}</p>
-        <span class="concept">Concepttekst</span>
+        ${p.final ? "" : '<span class="concept">Concepttekst</span>'}
       </div>
     </div></div>
     <div class="wrap content">
