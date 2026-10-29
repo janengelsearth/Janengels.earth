@@ -196,6 +196,13 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
 .nf { border-collapse: collapse; width: 100%; font-size: .95rem; }
 .nf th { text-align: left; font-family: var(--display); font-weight: 500; font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); }
 .nf td { padding: 10px 12px 10px 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.cake-fig { margin: 8px 0 4px; }
+.cake { width: 100%; height: auto; display: block; }
+.cake a { cursor: pointer; }
+.cake a:hover rect { filter: brightness(1.12); }
+.cake .ck-l { font-family: var(--display); font-size: 17px; font-weight: 600; }
+.cake .ck-s { font-family: var(--body); font-size: 13px; }
+.cake-fig figcaption { color: var(--muted); font-size: .85rem; margin-top: 8px; }
 .kader { margin: 8px 0; padding: 18px 22px; border-left: 4px solid var(--or-line); background: color-mix(in srgb, var(--sinopel) 22%, var(--ground)); font-family: var(--display); font-size: 1.25rem; font-weight: 500; line-height: 1.4; color: var(--ink); border-radius: 0 6px 6px 0; }
 .prose p b { font-weight: 600; }
 .todo { color: var(--muted); font-style: italic; border-left: 3px solid var(--or-line); padding-left: 12px; }
@@ -354,8 +361,8 @@ const PARTS = [
   { key: "rijkdom", name: "Geestelijke rijkdom", field: "Goud", layer: "Samenleving", sw: "var(--or)",
     lede: "Cultuur, literatuur en muziek maken: ik speel trombone in twee harmonieorkesten en een bigband. En het gesprek: elkaar echt ontmoeten, ook in de politiek.",
     plan: [["Muziek", "De orkesten, de bigband, en foto's van optredens."], ["Lezen en cultuur", "Wat ik lees en wat me raakt."], ["Ontmoeting", "Waarom het gesprek ertoe doet, ook in de politiek."], ["Kom in gesprek", "Op afspraak: via het formulier op de pagina achter mijn naam."]] },
-  { key: "economie", art: "oak", name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
-    lede: "De aarde is de basis. De samenleving werkt binnen de grenzen van de aarde, de economie binnen die van de samenleving. In de eik zie je die lagen terug: wortels in de aarde, een stevige stam, en vruchten.",
+  { key: "economie", art: "oak", final: true, name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
+    lede: "Is de economie het fundament, of de kers op de taart? Ik kies voor de kers. Want net als een boom kan ze alleen blijven floreren als wat eronder ligt gezond is: de bodem, en de samenleving.",
     plan: [["Mijn kijk: de wedding cake", "Het model achter deze site, kort uitgelegd."], ["Economie binnen grenzen", "Welvaart die verder kijkt dan geld."], ["Wat dit vraagt van bestuur", "Hoe je keuzes maakt met dit model in je achterhoofd."]] },
   { key: "reis", art: "phoenix", final: true, name: "Mijn reis", field: "De feniks", layer: "Persoonlijk", sw: "var(--gules)",
     lede: "Waarom een feniks op mijn wapenschild? Omdat ik mezelf rond 2010 opnieuw moest uitvinden. Wat ik daarvan leerde, bepaalt nog altijd hoe ik werk: open, nieuwsgierig en met oog voor mensen.",
@@ -428,6 +435,41 @@ const REIS = `
     ])}
   </section>`;
 
+// ---------- Brede welvaart: de wedding cake (concept) ----------
+const CAKE = `<svg class="cake" viewBox="0 0 640 262" role="img" aria-label="De wedding cake: economie op de samenleving, samenleving op de aarde">
+  <a href="#economie"><rect x="190" y="10" width="260" height="64" rx="6" fill="var(--eik)"/>
+    <text x="320" y="38" text-anchor="middle" class="ck-l" fill="#fff">Economie</text>
+    <text x="320" y="58" text-anchor="middle" class="ck-s" fill="#fff" opacity=".85">Brede welvaart · de eik</text></a>
+  <a href="#rijkdom"><rect x="110" y="84" width="420" height="72" rx="6" fill="var(--or)"/>
+    <text x="320" y="116" text-anchor="middle" class="ck-l" fill="#241c05">Samenleving</text>
+    <text x="320" y="137" text-anchor="middle" class="ck-s" fill="#241c05" opacity=".85">Geestelijke rijkdom · goud</text></a>
+  <a href="#water"><rect x="20" y="166" width="296" height="80" rx="6" fill="var(--azuur)"/>
+    <text x="168" y="200" text-anchor="middle" class="ck-l" fill="#fff">Aarde</text>
+    <text x="168" y="222" text-anchor="middle" class="ck-s" fill="#fff" opacity=".85">Water &amp; bodem · azuur</text></a>
+  <a href="#duurzaamheid"><rect x="324" y="166" width="296" height="80" rx="6" fill="var(--sinopel)"/>
+    <text x="472" y="200" text-anchor="middle" class="ck-l" fill="#fff">Aarde</text>
+    <text x="472" y="222" text-anchor="middle" class="ck-s" fill="#fff" opacity=".85">Duurzaamheid · sinopel</text></a>
+</svg>`;
+const ECON = `
+  <section class="narrow prose">
+    <h3>Mijn kijk: de “wedding cake”</h3>
+    <p><b>De aarde is de basis van ons bestaan.</b> In 2016 presenteerden Johan Rockström en Pavan Sukhdev van het <a href="https://www.stockholmresilience.org/research/research-news/2016-06-14-the-sdgs-wedding-cake.html" target="_blank" rel="noopener">Stockholm Resilience Centre</a> de duurzame doelen van de Verenigde Naties als een wedding cake: een bruidstaart van drie lagen. Onderop ligt de aarde: water, bodem, klimaat en natuur. Daarop rust de samenleving. En bovenop staat de economie.</p>
+    <figure class="cake-fig">${CAKE}<figcaption>De drie lagen, in de kleuren van mijn schild. Klik op een laag om verder te lezen.</figcaption></figure>
+    <p><b>Elke laag kan alleen bestaan binnen de laag eronder.</b> De samenleving werkt binnen de grenzen van de aarde, en de economie binnen de grenzen van de samenleving. Dat is geen rangorde van belang, maar van afhankelijkheid. Wie de donut van econoom Kate Raworth kent, herkent hetzelfde idee: een economie die blijft tussen een sociale ondergrens en de grenzen van de aarde.</p>
+    <blockquote class="kader">Een economie die de aarde uitput of mensen buitensluit, zaagt de poten onder haar eigen stoel weg.</blockquote>
+    <h3>Waarom de eik</h3>
+    <p><b>De eik staat voor alle bomen.</b> Een boom kan alleen op lange termijn gezond zijn in een gezonde bodem. En alleen dan kunnen wij er ook op lange termijn de vruchten van plukken. Op mijn schild staat de eik bovendien op het goud: een economie die geworteld is in de samenleving.</p>
+    <h3>Welvaart is meer dan geld</h3>
+    <p><b>Een goede economie meet je aan brede welvaart.</b> Het CBS omschrijft dat als de kwaliteit van leven hier en nu, en de mate waarin die ten koste gaat van <a href="https://www.cbs.nl/nl-nl/dossier/brede-welvaart" target="_blank" rel="noopener">mensen later of elders</a>. Dat is precies de wedding cake, in andere woorden.</p>
+    <p><b>Welvaart zit ook in wat je niet in geld uitdrukt.</b> Bij Herenboeren is een groep huishoudens samen eigenaar van een boerderij. Ze nemen een boer in dienst, en delen de kosten en de oogst. Wat het hun oplevert, is geen rendement, maar gezond eten, land waar goed voor gezorgd wordt en een gemeenschap rond de boer.</p>
+    <h3>Wat dit vraagt van bestuur</h3>
+    <p><b>Wie de bovenste laag voorop zet, legt de rekening bij de onderste.</b> Neem mest en bestrijdingsmiddelen die van akkers afspoelen naar sloten en beken. Van de bestrijdingsmiddelen die de waterschappen meten, overschrijdt zo’n twintig procent ergens de norm (<a href="https://unievanwaterschappen.nl/wp-content/uploads/inbreng-commissiedebat-gewasbeschermingsmiddelen-14mei-unievanwaterschappen.pdf" target="_blank" rel="noopener">Unie van Waterschappen, 2024</a>). Bij Vechtstromen zijn in 17 van de 49 wateren nog maatregelen nodig om in 2027 aan de Europese doelen voor schoon water te voldoen (<a href="https://www.vechtstromen.nl/werk/natuur-waterkwaliteit/kaderrichtlijn-water-krw/" target="_blank" rel="noopener">Vechtstromen</a>). Wat in het grondwater belandt, halen drinkwaterbedrijven er met extra zuivering weer uit (<a href="https://esb.nu/afnemende-kwaliteit-waterbronnen-verhoogt-kosten-drinkwater/" target="_blank" rel="noopener">ESB, 2026</a>). De winst wordt bovenaan geboekt, de rekening onderaan betaald: door ons allemaal, via de waterschapsbelasting en de drinkwaterrekening.</p>
+    <p><b>Daarom begint een goed besluit voor mij onderaan de taart.</b> Wat doet het met water, bodem en natuur? Wat doet het met de mensen die het raakt? Pas daarna komt de vraag wat het oplevert. Zo komt de rekening niet ongemerkt bij een ander terecht: bij de buren stroomafwaarts, of bij de generatie na ons.</p>
+    <h3>Van model naar beleid</h3>
+    <p><b>Overheden kunnen nu al sturen op brede welvaart.</b> Het CBS meet die elk jaar, gekoppeld aan de duurzame doelen van de VN, de SDG’s. Sommige regio’s en provincies sturen er al op. In Twente meet de Twente Board elk jaar het <a href="https://twente.com/twente-board/bruto-twents-geluk/is-bruto-twents-geluk-meetbaar" target="_blank" rel="noopener">Bruto Twents Geluk</a>, een maat voor brede welvaart, en gebruikt die uitkomsten als kompas voor zijn strategie. En Drenthe nam brede welvaart op in zijn <a href="https://trendbureaudrenthe.nl/regionale-monitor-brede-welvaart-beschikbaar-voor-elke-drentse-gemeente/" target="_blank" rel="noopener">Sociale Agenda</a>. Het Rijk meet wel, maar stuurt er nog onvoldoende op. De planbureaus pleitten in 2025 voor een stevigere plek in de rijksbegroting (<a href="https://www.pbl.nl/actueel/nieuws/inzet-brede-welvaart-voor-2025-2027" target="_blank" rel="noopener">PBL</a>).</p>
+    <p>Hoe overheden hier beter op kunnen sturen, werk ik binnenkort uit in een eigen artikel.</p>
+  </section>`;
+
 // ---------- inner pages ----------
 function planList(p) { return `<ul class="plan">${p.plan.map(([t, d]) => `<li><b>${t}</b><span>${d}</span></li>`).join("")}</ul>`; }
 document.getElementById("pages").innerHTML = PARTS.map(p => `
@@ -444,7 +486,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
       </div>
     </div></div>
     <div class="wrap content">
-      ${p.key === "reis" ? REIS : p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
+      ${p.key === "reis" ? REIS : p.key === "economie" ? ECON : p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
       ${p.blog ? `<section class="narrow"><h3>Blog</h3><div class="empty">Nog geen berichten. ${p.blog}</div></section>` : ""}
     </div>
   </article>`).join("") + `
