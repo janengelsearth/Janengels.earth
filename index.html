@@ -465,21 +465,21 @@ nav.sections.home-nav a:hover { border-bottom-color: var(--c); }
 const PARTS = [
   { key: "water", final: true, name: "Water & bodem", field: "Azuur", layer: "Aarde", sw: "var(--azuur)",
     lede: "Wat bezit je eigenlijk, als je grond bezit? Op papier veel, in werkelijkheid niets. We hebben grond en water te leen, van wie vóór ons kwamen en van wie na ons komen. Daarom hebben we de plicht er goed voor te zorgen. Dat is voor mij rentmeesterschap: een goede voorouder zijn.",
-    plan: [["Wat doet het waterschap", "Uitleg in gewone taal, van waterpeil tot zuivering."], ["Mijn inzet", "Waar ik voor sta, en waarom ik kandidaat ben voor Water Natuurlijk."], ["Blog", "Berichten over water en bodem in Twente en Overijssel."]],
+    plan: [["Wat bezit je?", ""], ["Wie laat water en bodem sturen?", ""], ["Wat doet het waterschap?", ""], ["Waar zet ik me voor in?", ""], ["Waar is de natuur gebleven?", ""]],
     blog: "Blogs over water en bodem verschijnen hier, met de nieuwste bovenaan." },
   { key: "duurzaamheid", final: true, name: "Duurzaamheid", field: "Sinopel", layer: "Aarde", sw: "var(--sinopel)",
     lede: "Van wie is de energie die we opwekken? Wat op je eigen dak ligt, is van jou. Maar de wind en het landschap zijn van ons allemaal. Energie is voor mij daarom een nutsvoorziening, geen belegging: de lusten en de lasten horen bij de mensen die hier wonen.",
-    plan: [["Energietransitie", "Waarom inwoners eigenaar moeten zijn van hun energie."], ["Energiecoöperaties", "Waar ik actief ben, en wat coöperaties doen."], ["Gebouwde omgeving", "Woningen en gebouwen verduurzamen."], ["Blog", "Berichten over energie en duurzaamheid."]],
+    plan: [["Van wie is de energie?", ""], ["Wie profiteert er nu, en wie niet?", ""], ["Hoe maken we onze buurten klaar?", ""], ["Hoe houden we het net in balans?", ""], ["Wat vraagt dit van de regio?", ""]],
     blog: "Blogs over de energietransitie verschijnen hier, met de nieuwste bovenaan." },
   { key: "rijkdom", final: true, name: "Cultuur & gemeenschap", field: "Goud", layer: "Samenleving", sw: "var(--or)", blog: "Blogs over cultuur en gemeenschap verschijnen hier, met de nieuwste bovenaan.",
     lede: "Wat maakt het leven de moeite waard? Voor mij zijn dat de mensen om me heen, en de plek waar we samen leven. Het goud op mijn schild staat voor wat echt waarde heeft: de cultuur die ons verbindt, en de herinneringen die we samen maken.",
-    plan: [["Muziek", "De orkesten, de bigband, en foto's van optredens."], ["Lezen en cultuur", "Wat ik lees en wat me raakt."], ["Ontmoeting", "Waarom het gesprek ertoe doet, ook in de politiek."], ["Kom in gesprek", "Op afspraak: via het formulier op de pagina achter mijn naam."]] },
+    plan: [["Wat maakt het leven de moeite waard?", ""], ["Waarom hebben we elkaar nodig?", ""], ["Wat voor dorp willen we zijn?", ""], ["Wat kan een gemeente doen?", ""]] },
   { key: "economie", art: "oak", final: true, name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
     lede: "Is de economie het fundament, of de kers op de taart? Ik kies voor de kers. Want net als een boom kan ze alleen blijven floreren als wat eronder ligt gezond is: de bodem, en de samenleving.",
-    plan: [["Mijn kijk: de wedding cake", "Het model achter deze site, kort uitgelegd."], ["Economie binnen grenzen", "Welvaart die verder kijkt dan geld."], ["Wat dit vraagt van bestuur", "Hoe je keuzes maakt met dit model in je achterhoofd."]] },
+    plan: [["Mijn kijk: de “wedding cake”", ""], ["Waarom de eik", ""], ["Welvaart is meer dan geld", ""], ["Wat dit vraagt van bestuur", ""], ["Van model naar beleid", ""]] },
   { key: "reis", art: "phoenix", final: true, name: "Mijn reis", field: "De feniks", layer: "Persoonlijk", sw: "var(--gules)",
     lede: "Waarom een feniks op mijn wapenschild? Omdat ik mezelf rond 2010 opnieuw moest uitvinden. Wat ik daarvan leerde, bepaalt nog altijd hoe ik werk: open, nieuwsgierig en met oog voor mensen.",
-    plan: [["Mijn verhaal", "Van burn-out naar een nieuwe fase."], ["Loopbaan", "De hoofdlijnen; details staan op LinkedIn."], ["Nevenfuncties", "Een actueel en openbaar overzicht."]],
+    plan: [["Mijn verhaal", ""], ["Loopbaan", ""], ["Toezicht", ""], ["Opleiding", ""], ["Nevenfuncties", ""], ["Politiek", ""]],
     portrait: true },
 ];
 const byKey = Object.fromEntries(PARTS.map(p => [p.key, p]));
@@ -521,7 +521,7 @@ const REIS = `
     <h3>Toezicht</h3>
     ${tl([
       ["2021 – 2025", "Lid raad van toezicht, Stadskamer Achterhoek", "Herstelgerichte zorg en welzijn."],
-      ["2016 – 2019", "Voorzitter raad van commissarissen, Agem", "Het groene energiebedrijf van Achterhoekse gemeenten en inwoners."],
+      ["2019 – 2023", "Voorzitter raad van commissarissen, Agem", "Het groene energiebedrijf van Achterhoekse gemeenten en inwoners."],
     ])}
     <h3>Opleiding</h3>
     ${tl([
