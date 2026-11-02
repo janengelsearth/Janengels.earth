@@ -212,6 +212,7 @@ nav.sections a[data-key="reis"] { --c: var(--gules); }
 .cake-fig figcaption { color: var(--muted); font-size: .85rem; margin-top: 8px; }
 
 #view-duurzaamheid { --pc: var(--sinopel); }
+#view-rijkdom { --pc: var(--or); }
 /* Water & bodem: hoofdstukken */
 .wl { display: grid; gap: 28px; scroll-margin-top: 90px; }
 .wl .n { font-family: var(--display); font-weight: 600; color: var(--or-line); font-variant-numeric: tabular-nums; }
@@ -391,7 +392,7 @@ nav.sections.home-nav a:hover { border-bottom-color: var(--c); }
               <rect x="0" y="0" width="525" height="1265" fill="var(--sinopel)"/>
               <rect class="ring" x="16" y="16" width="493" height="1233"/>
             </a>
-            <a class="region" href="#rijkdom" data-key="rijkdom" aria-label="Goud: Cultuur">
+            <a class="region" href="#rijkdom" data-key="rijkdom" aria-label="Goud: Cultuur &amp; gemeenschap">
               <rect x="525" y="0" width="525" height="622" fill="var(--or)"/>
               <rect class="ring" x="541" y="16" width="493" height="590"/>
             </a>
@@ -424,7 +425,7 @@ nav.sections.home-nav a:hover { border-bottom-color: var(--c); }
       <nav class="sections home-nav" aria-label="Onderdelen">
         <a href="#water" data-key="water">Water &amp; bodem</a>
         <a href="#duurzaamheid" data-key="duurzaamheid">Duurzaamheid</a>
-        <a href="#rijkdom" data-key="rijkdom">Cultuur</a>
+        <a href="#rijkdom" data-key="rijkdom">Cultuur &amp; gemeenschap</a>
         <a href="#economie" data-key="economie">Brede welvaart</a>
         <a href="#reis" data-key="reis">Mijn reis</a>
       </nav>
@@ -449,7 +450,7 @@ nav.sections.home-nav a:hover { border-bottom-color: var(--c); }
       <nav class="sections" aria-label="Onderdelen">
         <a href="#water" data-key="water">Water &amp; bodem</a>
         <a href="#duurzaamheid" data-key="duurzaamheid">Duurzaamheid</a>
-        <a href="#rijkdom" data-key="rijkdom">Cultuur</a>
+        <a href="#rijkdom" data-key="rijkdom">Cultuur &amp; gemeenschap</a>
         <a href="#economie" data-key="economie">Brede welvaart</a>
         <a href="#reis" data-key="reis">Mijn reis</a>
       </nav>
@@ -470,8 +471,8 @@ const PARTS = [
     lede: "Van wie is de energie die we opwekken? Wat op je eigen dak ligt, is van jou. Maar de wind en het landschap zijn van ons allemaal. Energie is voor mij daarom een nutsvoorziening, geen belegging: de lusten en de lasten horen bij de mensen die hier wonen.",
     plan: [["Energietransitie", "Waarom inwoners eigenaar moeten zijn van hun energie."], ["Energiecoöperaties", "Waar ik actief ben, en wat coöperaties doen."], ["Gebouwde omgeving", "Woningen en gebouwen verduurzamen."], ["Blog", "Berichten over energie en duurzaamheid."]],
     blog: "Blogs over de energietransitie verschijnen hier, met de nieuwste bovenaan." },
-  { key: "rijkdom", name: "Cultuur", field: "Goud", layer: "Samenleving", sw: "var(--or)",
-    lede: "Cultuur, literatuur en muziek maken: ik speel trombone in twee harmonieorkesten en een bigband. En het gesprek: elkaar echt ontmoeten, ook in de politiek.",
+  { key: "rijkdom", final: true, name: "Cultuur & gemeenschap", field: "Goud", layer: "Samenleving", sw: "var(--or)", blog: "Blogs over cultuur en gemeenschap verschijnen hier, met de nieuwste bovenaan.",
+    lede: "Wat maakt het leven de moeite waard? Voor mij zijn dat de mensen om me heen, en de plek waar we samen leven. Het goud op mijn schild staat voor wat echt waarde heeft: de cultuur die ons verbindt, en de herinneringen die we samen maken.",
     plan: [["Muziek", "De orkesten, de bigband, en foto's van optredens."], ["Lezen en cultuur", "Wat ik lees en wat me raakt."], ["Ontmoeting", "Waarom het gesprek ertoe doet, ook in de politiek."], ["Kom in gesprek", "Op afspraak: via het formulier op de pagina achter mijn naam."]] },
   { key: "economie", art: "oak", final: true, name: "Brede welvaart", field: "De eik", layer: "Economie", sw: "#8d8531",
     lede: "Is de economie het fundament, of de kers op de taart? Ik kies voor de kers. Want net als een boom kan ze alleen blijven floreren als wat eronder ligt gezond is: de bodem, en de samenleving.",
@@ -554,7 +555,7 @@ const CAKE = `<svg class="cake" viewBox="0 0 640 262" role="img" aria-label="De 
     <text x="320" y="58" text-anchor="middle" class="ck-s" fill="#fff" opacity=".85">Brede welvaart · de eik</text></a>
   <a href="#rijkdom"><rect x="110" y="84" width="420" height="72" rx="6" fill="var(--or)"/>
     <text x="320" y="116" text-anchor="middle" class="ck-l" fill="#241c05">Samenleving</text>
-    <text x="320" y="137" text-anchor="middle" class="ck-s" fill="#241c05" opacity=".85">Cultuur · goud</text></a>
+    <text x="320" y="137" text-anchor="middle" class="ck-s" fill="#241c05" opacity=".85">Cultuur &amp; gemeenschap · goud</text></a>
   <a href="#water"><rect x="20" y="166" width="296" height="80" rx="6" fill="var(--azuur)"/>
     <text x="168" y="200" text-anchor="middle" class="ck-l" fill="#fff">Aarde</text>
     <text x="168" y="222" text-anchor="middle" class="ck-s" fill="#fff" opacity=".85">Water &amp; bodem · azuur</text></a>
@@ -584,6 +585,34 @@ const ECON = `
   <aside class="zelf narrow">
     <p class="eyebrow">Wat doe ik zelf?</p>
     <p><b>Welvaart zit ook in wat je niet in geld uitdrukt.</b> Ons eten halen we voor een groot deel bij Herenboeren en bij de biologische coöperatie Odin. Bij Herenboeren is een groep huishoudens samen eigenaar van een boerderij. Ze nemen een boer in dienst, en delen de kosten en de oogst. Wat het oplevert, is geen rendement, maar gezond eten, land waar goed voor gezorgd wordt en een gemeenschap rond de boer.</p>
+  </aside>`;
+
+const CULT = `
+  <div class="wl" data-mode="c">
+    <nav class="wl-index" aria-label="Op deze pagina"><p class="eyebrow">Op deze pagina</p><a href="#rijkdom" data-ch="1"><span class="n">01</span><b>Wat maakt het leven de moeite waard?</b><span class="s">De herinneringen die je samen maakt, met de mensen om je heen en op de plek waar je woont.</span></a><a href="#rijkdom" data-ch="2"><span class="n">02</span><b>Waarom hebben we elkaar nodig?</b><span class="s">Omdat een samenleving meer is dan overheid en markt. Ze draait op mensen die naar elkaar omkijken.</span></a><a href="#rijkdom" data-ch="3"><span class="n">03</span><b>Wat voor dorp willen we zijn?</b><span class="s">Wie inwoners echt laat meepraten, krijgt betere plannen.</span></a><a href="#rijkdom" data-ch="4"><span class="n">04</span><b>Wat kan een gemeente doen?</b><span class="s">Elk kind in contact met sport, muziek en cultuur. En een openbare ruimte waar je elkaar ontmoet.</span></a></nav>
+    <button class="wl-back" type="button">← Alle vragen</button>
+    <div class="wl-chs"><section class="wl-ch" data-ch="1"><header><span class="n">01</span><h3>Wat maakt het leven de moeite waard?</h3><p class="wl-short">De herinneringen die je samen maakt, met de mensen om je heen en op de plek waar je woont.</p></header><div class="wl-body prose">
+<p><b>Welvaart is meer dan geld.</b> Wat het leven de moeite waard maakt, beleef je samen: een wandeling met familie of vrienden, een goed gesprek, samen muziek maken. Daar komen de herinneringen uit voort die blijven.</p>
+<p><b>Cultuur verbindt je met de mensen om je heen.</b> Muziek, verhalen en tradities geven een gemeenschap haar eigen karakter. Ze maken dat je je ergens thuis voelt, en dat je elkaar iets te vertellen hebt.</p>
+<p><b>Cultuur verbindt je ook met de plek.</b> Ik ben dol op historische kaarten, en mijn rentmeestersopleiding heeft dat alleen maar versterkt. Op een oude kaart zie je hoe een landschap is ontstaan, en waarom een dorp ligt waar het ligt.</p>
+<p><b>Lezen hoort er voor mij wezenlijk bij.</b> Ik lees om te ontspannen: historische romans, die de geest van een tijd tot leven brengen, maar ook fantasy en thrillers. En ik lees om te leren: boeken over maatschappelijke vraagstukken. Een aantal daarvan stel ik in mijn blogs graag aan je voor.</p>
+<blockquote class="kader">Cultuur gaat over verbinding: met de mensen om je heen, en met de plek.</blockquote></div></section><section class="wl-ch" data-ch="2"><header><span class="n">02</span><h3>Waarom hebben we elkaar nodig?</h3><p class="wl-short">Omdat een samenleving meer is dan overheid en markt. Ze draait op mensen die naar elkaar omkijken.</p></header><div class="wl-body prose">
+<p><b>Naast overheid en markt is er een derde manier om dingen te organiseren: mensen onderling.</b> In Twente heet dat noaberschap. Buren die naar elkaar omkijken, mensen die zorgen voor een ouder of een vriend, inwoners die samen een coöperatie oprichten.</p>
+<p><b>Dat heeft ook een grote economische waarde.</b> Alleen al de mantelzorg in Nederland is zo’n 32 tot 44 miljard euro per jaar waard: zoveel zou het kosten om die zorg in te kopen (<a href="https://backend.mantelzorg.nl/app/uploads/2021/03/NL5300-35818-Maatschappelijke-Waarde-Mantelzorg_def.pdf" target="_blank" rel="noopener">Ecorys, 2021</a>). En veel grote bedrijven begonnen ooit als samenwerking van boeren, die samen een bank, een zuivelfabriek of een verzekering oprichtten. Toch telt die waarde in onze economie nauwelijks mee, omdat er geen geld voor wordt betaald.</p>
+<p><b>Het bekendste voorbeeld is het vrijwilligerswerk.</b> Zonder vrijwilligers geen sportcompetitie, geen dorpsfeest en geen concert.</p>
+<p><b>Daar groeit vertrouwen.</b> Vertrouwen in elkaar ontstaat waar mensen samen iets dragen: een vereniging, een buurtinitiatief, een coöperatie. Daarom vind ik het belangrijk dat mensen ook samen eigenaar kunnen zijn van hun <a href="#duurzaamheid">energie</a> en hun eten.</p>
+<p><b>Noaberschap geldt voor iedereen in de straat.</b> Ook voor wie er net komt wonen, of wie minder te besteden heeft. Een gemeenschap is pas echt sterk als iedereen erbij kan horen.</p></div></section><section class="wl-ch" data-ch="3"><header><span class="n">03</span><h3>Wat voor dorp willen we zijn?</h3><p class="wl-short">Wie inwoners echt laat meepraten, krijgt betere plannen.</p></header><div class="wl-body prose">
+<p><b>Een goed gesprek begint met de goede vraag.</b> Als wethouder in Bronckhorst stond ik aan de wieg van Vitale Kernen. Het begon met de herinrichting van de winkelgebieden in Hengelo, Steenderen, Vorden en Zelhem. Al snel werd het een veel grotere vraag: wat voor dorp willen we zijn?</p>
+<p><b>Die vraag beantwoordden de dorpen zelf.</b> Per kern maakten werkgroepen van inwoners, ondernemers, maatschappelijke organisaties en de gemeente een eigen dorpsvisie. In Zelhem ging de werkgroep in 2024 zelfstandig verder, als Stichting Vitale Kern Zelhem.</p>
+<p><b>Dat is voor mij de kern van goed bestuur.</b> <a href="#jan">Niemand heeft de wijsheid in pacht.</a> Als je mensen echt laat meepraten over hun eigen dorp, worden plannen beter, en voelen mensen zich er ook eigenaar van.</p></div></section><section class="wl-ch" data-ch="4"><header><span class="n">04</span><h3>Wat kan een gemeente doen?</h3><p class="wl-short">Elk kind in contact met sport, muziek en cultuur. En een openbare ruimte waar je elkaar ontmoet.</p></header><div class="wl-body prose">
+<p><b>Er is een heel dorp nodig om een kind op te voeden.</b> Elk kind zou structureel in contact moeten komen met sport, muziek en cultuur, ongeacht afkomst, en ongeacht de mogelijkheden of voorkeuren van de ouders. De school is de plek waar je alle kinderen vindt. Hoe mooi zou het zijn om dáár, samen met de verenigingen, de verbinding met sport, muziek en cultuur te leggen.</p>
+<p><b>De openbare ruimte hoort ontmoetingsruimte te zijn.</b> Nu is ze vooral ruimte om je te verplaatsen. Een straat, een plein of een park kan veel meer zijn: een plek waar je elkaar tegenkomt. Elk kind zou vanaf een jaar of acht veilig en zelfstandig naar school moeten kunnen. Als dat lukt, kan iedereen prettiger leven in de buurt.</p>
+<p><b>Vertrouwen groeit als overheid en inwoners elkaar tegemoetkomen.</b> Robin Koster en Ruben Beijl van Moventem noemen dat wederkerigheid, in hun boek <a href="https://www.moventem.nl/" target="_blank" rel="noopener"><i>Tijd voor vertrouwen</i></a>. De overheid geeft ruimte in plaats van alles te willen regelen, en inwoners nemen verantwoordelijkheid in plaats van af te wachten. Een gemeente die investeert in de <a href="#duurzaamheid">leefruimte</a> van een buurt, zet daarin de eerste stap: ze laat zien dat ze iets komt brengen, en niet alleen iets komt vragen.</p></div></section></div>
+  </div>
+  <aside class="zelf narrow">
+    <p class="eyebrow">Wat doe ik zelf?</p>
+    <p><b>De lol van muziek zit in het samen spelen.</b> Ik speel trombone in twee harmonieorkesten en een bigband. Ook thuis wordt er volop muziek gemaakt. Muziek geeft me energie, net als sporten en in de natuur zijn.</p>
+    <p><b>Waar je structureel van profiteert, lever je ook een bijdrage aan.</b> Vrijwilligers zijn overal in de samenleving nodig, niet alleen bij verenigingen. Zo was ik trainer en scheidsrechter bij het volleybal, en zat ik in het bestuur van sport- en muziekverenigingen.</p>
   </aside>`;
 
 const DUUR = `
@@ -683,7 +712,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
       </div>
     </div></div>
     <div class="wrap content">
-      ${p.key === "reis" ? REIS : p.key === "economie" ? ECON : p.key === "water" ? WATER : p.key === "duurzaamheid" ? DUUR : p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
+      ${p.key === "reis" ? REIS : p.key === "economie" ? ECON : p.key === "water" ? WATER : p.key === "duurzaamheid" ? DUUR : p.key === "rijkdom" ? CULT : p.portrait ? `<div class="duo"><div class="portrait"><div><b>JE</b>Portretfoto volgt</div></div><div><h3>Hier komt</h3>${planList(p)}</div></div>` : `<section><h3>Hier komt</h3>${planList(p)}</section>`}
       ${p.blog ? `<section class="narrow"><h3>Blog</h3><div class="empty">Nog geen berichten. ${p.blog}</div></section>` : ""}
     </div>
   </article>`).join("") + `
@@ -718,7 +747,7 @@ document.getElementById("pages").innerHTML = PARTS.map(p => `
             <div class="row">
               <label for="f-onderwerp">Onderwerp
                 <select id="f-onderwerp" name="Onderwerp">
-                  <option>Water &amp; bodem</option><option>Duurzaamheid</option><option>Cultuur</option><option>Brede welvaart</option><option>Een bestuurlijke rol</option><option>Iets anders</option>
+                  <option>Water &amp; bodem</option><option>Duurzaamheid</option><option>Cultuur &amp; gemeenschap</option><option>Brede welvaart</option><option>Een bestuurlijke rol</option><option>Iets anders</option>
                 </select>
               </label>
               <label for="f-moment">Voorkeur voor dag of tijd<input id="f-moment" type="text" name="Voorkeur moment" placeholder="Bijvoorbeeld: dinsdagmiddag"></label>
