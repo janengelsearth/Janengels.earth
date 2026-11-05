@@ -1,0 +1,51 @@
+# Bewaart elke externe bron van de site in het Internet Archive (Wayback Machine).
+# Draait als index.html verandert, zodat nieuwe bronnen meteen worden vastgelegd.
+# Bronnen met een kopie van minder dan 180 dagen oud worden overgeslagen.
+name: Bronnen archiveren
+
+on:
+  push:
+    branches: [main]
+    paths: [index.html, .github/workflows/archiveren.yml]
+  schedule:
+    - cron: "41 4 15 */3 *"  # en elk kwartaal ter controle
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archiveren:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Externe links opslaan in de Wayback Machine
+        run: |
+          grep -oE 'href="https?://[^"]+"' index.html \
+            | sed 's/^href="//; s/"$//; s/&amp;/\&/g' \
+            | grep -viE 'linkedin\.com|web\.archive\.org' \
+            | sort -u > bronnen.txt
+          grens=$(date -u -d '180 days ago' +%Y%m%d%H%M%S)
+          {
+            echo "## Bronnen in het Internet Archive"
+            echo
+            echo "| Bron | Status |"
+            echo "|---|---|"
+          } >> "$GITHUB_STEP_SUMMARY"
+          while read -r url; do
+            laatste=$(curl -s --max-time 30 "https://archive.org/wayback/available?url=${url}" \
+              | jq -r '.archived_snapshots.closest.timestamp // "0"' 2>/dev/null || echo 0)
+            if [ "${laatste:-0}" \> "$grens" ]; then
+              echo "| $url | al bewaard ([kopie](https://web.archive.org/web/${laatste}/${url})) |" >> "$GITHUB_STEP_SUMMARY"
+              continue
+            fi
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 120 "https://web.archive.org/save/${url}" || echo fout)
+            if [ "$code" = "200" ] || [ "$code" = "302" ]; then
+              echo "| $url | nu bewaard ([kopie](https://web.archive.org/web/${url})) |" >> "$GITHUB_STEP_SUMMARY"
+            else
+              echo "| $url | niet gelukt (code $code), volgende keer opnieuw |" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            sleep 15   # het archief staat zonder account een beperkt aantal verzoeken per minuut toe
+          done < bronnen.txt
